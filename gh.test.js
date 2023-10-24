@@ -16,10 +16,6 @@ describe("Github page tests", () => {
         const firstLink = await page.$("header div div a");
         await firstLink.click();
         await page.waitForSelector("h1");
-        await page.screenshot({
-            path: "screenshot.png",
-            fullPage: true,
-        });
         const title2 = await page.title();
         expect(title2).toEqual("GitHub: Let’s build from here · GitHub");
     }, 60000);
@@ -54,6 +50,7 @@ describe("Github start page tests", () => {
 
     test("The first link text 'Pricing'", async () => {
         await page.click("nav > ul > li:nth-child(4) > a");
+        await page.waitForSelector("h1");
         const actual = await page.title();
         expect(actual).toContain(
             "Pricing · Plans for every developer · GitHub"
@@ -62,6 +59,7 @@ describe("Github start page tests", () => {
 
     test("The second link text 'Features'", async () => {
         await page.click("footer ul > li:nth-child(1) > a");
+        await page.waitForSelector("h1");
         const actual = await page.title();
         expect(actual).toContain("Features | GitHub · GitHub");
     }, 60000);
